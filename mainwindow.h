@@ -29,11 +29,19 @@ private slots:
 
     void on_b_ce_clicked();
 
+    void on_b_c_clicked();
+
+    void on_b_sqrt_clicked();
+
+    void on_b_square_clicked();
+
+    void on_b_fraction_clicked();
+
 private:
     void refresh_display();
 
     Ui::MainWindow *ui;
-    QString last;
+    QString last = "";
     QChar operation = 'o';
     QString now = "0";
 };

@@ -48,7 +48,8 @@
             ],
             "dependsOn": [
                 "qmake-debug"
-            ]
+            ],
+            "problemMatcher": []
         },
         {
             "label": "run-debug",
@@ -64,7 +65,6 @@
                 "$gcc"
             ]
         },
-
         {
             "label": "force-run",
             "type": "process",
@@ -76,7 +76,6 @@
                 "$gcc"
             ]
         },
-
         {
             "label": "qmake-release",
             "type": "shell",

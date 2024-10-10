@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <math.h>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -15,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->b_7, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
     connect(ui->b_8, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
     connect(ui->b_9, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
-
-    connect(ui->b_ce, SIGNAL(clicked()), this, SLOT(on_b_ce_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +85,23 @@ void MainWindow::on_b_p_or_n_clicked()
 
 void MainWindow::refresh_display()
 {
+
+    QString message = "";
+
+    if (last.length() > 0)
+    {
+        message += last;
+    }
+
+    if (operation != 'o')
+    {
+        message += operation;
+    }
+
+    message += now;
+
+    ui->statusbar->showMessage(now);
+
     ui->display->setText(now);
 }
 
@@ -134,4 +151,64 @@ void MainWindow::on_b_backspace_clicked()
 void MainWindow::on_b_ce_clicked()
 {
     now = "0";
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_c_clicked()
+{
+    now = "0";
+    operation = 'o';
+    last = "0";
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_sqrt_clicked()
+{
+    bool check;
+    double num = now.toDouble(&check);
+    std::cout << num;
+    if (!check)
+    {
+        ui->statusbar->showMessage("Error on button_sqrt");
+        return;
+    }
+
+    now.setNum(sqrt(num));
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_square_clicked()
+
+{
+    bool check;
+    double num = now.toDouble(&check);
+    std::cout << num;
+    if (!check)
+    {
+        ui->statusbar->showMessage("Error on button_squard");
+        return;
+    }
+
+    now.setNum(pow(num, 2));
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_fraction_clicked()
+{
+    bool check;
+    double num = now.toDouble(&check);
+    std::cout << num;
+    if (!check)
+    {
+        ui->statusbar->showMessage("Error on button_squard");
+        return;
+    }
+
+    now.setNum(1.0 / num);
+    refresh_display();
+    return;
 }
