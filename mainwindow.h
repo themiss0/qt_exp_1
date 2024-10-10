@@ -27,6 +27,8 @@ private slots:
 
     void on_b_backspace_clicked();
 
+    void on_b_ce_clicked();
+
 private:
     void refresh_display();
 
