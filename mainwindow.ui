@@ -219,7 +219,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QPushButton" name="b_mod">
+       <widget class="QPushButton" name="b_persent">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>

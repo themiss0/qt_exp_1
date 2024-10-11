@@ -3,6 +3,7 @@
 #include <math.h>
 #include <iostream>
 
+// 构造函数
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -19,10 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->b_9, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
 }
 
+// 析构
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+// 槽函数
 
 void MainWindow::on_num_clicked()
 {
@@ -83,28 +87,6 @@ void MainWindow::on_b_p_or_n_clicked()
     refresh_display();
 }
 
-void MainWindow::refresh_display()
-{
-
-    QString message = "";
-
-    if (last.length() > 0)
-    {
-        message += last;
-    }
-
-    if (operation != 'o')
-    {
-        message += operation;
-    }
-
-    message += now;
-
-    ui->statusbar->showMessage(now);
-
-    ui->display->setText(now);
-}
-
 void MainWindow::on_b_backspace_clicked()
 {
     bool check;
@@ -160,6 +142,7 @@ void MainWindow::on_b_c_clicked()
     now = "0";
     operation = 'o';
     last = "0";
+    result = "";
     refresh_display();
     return;
 }
@@ -199,6 +182,7 @@ void MainWindow::on_b_square_clicked()
 
 void MainWindow::on_b_fraction_clicked()
 {
+
     bool check;
     double num = now.toDouble(&check);
     std::cout << num;
@@ -211,4 +195,78 @@ void MainWindow::on_b_fraction_clicked()
     now.setNum(1.0 / num);
     refresh_display();
     return;
+}
+
+void MainWindow::on_b_persent_clicked()
+{
+    bool check;
+    double num = now.toDouble(&check);
+    if (!check)
+    {
+        ui->statusbar->showMessage("Error on button_persent");
+        return;
+    }
+
+    now.setNum(num / 100);
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_add_clicked()
+{
+
+    bool check;
+    double num = now.toDouble(&check);
+    if (!check)
+    {
+        ui->statusbar->showMessage("Error on button_add");
+        return;
+    }
+
+    if (num != 0 && operation != 'o')
+    {
+        double re = calculate(operation, &check);
+        last.setNum(re);
+    }
+
+    operation = '+';
+    last = now;
+    now = "0";
+
+    ui->statusbar->showMessage(last + operation);
+    refresh_display();
+}
+
+void MainWindow::on_b_equal_clicked()
+{
+
+    if (operation == 'o')
+    {
+        return;
+    }
+
+    bool check;
+    double result = calculate(operation, &check);
+
+    QString *temp = new QString();
+    temp->setNum(result);
+    statusMessage.append(*temp);
+    delete temp;
+
+    now.setNum(result);
+
+    refresh_display();
+    return;
+}
+
+void MainWindow::on_b_sub_clicked()
+{
+}
+
+void MainWindow::on_b_multi_clicked()
+{
+}
+
+void MainWindow::on_b_devide_clicked()
+{
 }

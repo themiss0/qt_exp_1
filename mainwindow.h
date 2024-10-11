@@ -37,12 +37,27 @@ private slots:
 
     void on_b_fraction_clicked();
 
+    void on_b_persent_clicked();
+
+    void on_b_add_clicked();
+
+    void on_b_sub_clicked();
+
+    void on_b_multi_clicked();
+
+    void on_b_devide_clicked();
+
+    void on_b_equal_clicked();
+
 private:
     void refresh_display();
+    double calculate(QChar, bool *);
 
     Ui::MainWindow *ui;
     QString last = "";
     QChar operation = 'o';
     QString now = "0";
+    QString statusMessage = "";
+    QString result = "";
 };
 #endif // MAINWINDOW_H
