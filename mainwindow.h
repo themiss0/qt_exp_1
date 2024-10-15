@@ -55,17 +55,17 @@ private:
 
     Ui::MainWindow *ui;
 
-    // 记录第一个输入
-    QString last = "";
+    // 记录输入值
+    double n = 0;
     // 记录操作符
-    QChar operation = 'o';
-    // 记录当前输入
+    QString operation = "";
+    // 输入框
     QString now = "0";
     // 状态栏显示
     QString statusMessage = "";
-    // 输出
-    QString result = "";
     // 是否已经输出结果
-    bool ifOutput = false;
+    bool restart_input = false;
+    // 当前步骤
+    int step = 0;
 };
 #endif // MAINWINDOW_H

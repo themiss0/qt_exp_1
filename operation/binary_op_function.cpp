@@ -3,55 +3,41 @@
 #include <math.h>
 #include <iostream>
 
+// 减
 void MainWindow::on_b_sub_clicked()
 {
 }
-
+// 乘
 void MainWindow::on_b_multi_clicked()
 {
 }
-
+// 除
 void MainWindow::on_b_devide_clicked()
 {
 }
-
+// 加
 void MainWindow::on_b_add_clicked()
 {
 
     bool check;
-    double num = now.toDouble(&check);
-    if (!check)
+    double num = now.toDouble();
+
+    if (!operation.isEmpty())
     {
-        ui->statusbar->showMessage("Error on button_add");
-        return;
+        if (restart_input)
+        {
+
+            restart_input = false;
+            
+
+            operation = "+";
+            return;
+        }
+        n = calculate(operation[0], &check);
     }
 
-    if (num != 0 && operation != 'o')
-    {
-        double re = calculate(operation, &check);
-        last.setNum(re);
-    }
-
-    operation = '+';
-    last = now;
+    operation = "+";
     now = "0";
 
-    ui->statusbar->showMessage(last + operation);
     refresh_display();
-}
-
-
-void MainWindow::on_b_persent_clicked()
-{
-    bool check;
-    double num = now.toDouble(&check);
-    if (!check)
-    {
-        ui->statusbar->showMessage("Error on button_persent");
-        return;
-    }
-
-    now.setNum(num / 100);
-    refresh_display();
-    return;
 }

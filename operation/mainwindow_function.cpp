@@ -3,6 +3,7 @@
 #include <math.h>
 #include <iostream>
 
+// 刷新输出
 void MainWindow::refresh_display()
 {
 
@@ -10,48 +11,34 @@ void MainWindow::refresh_display()
     ui->display->setText(now);
 }
 
+// 运算函数
 double MainWindow::calculate(QChar ch, bool *re)
 {
 
     bool check;
 
-    double a = last.toDouble(&check);
-    if (!check)
-    {
-        ui->statusbar->showMessage("Error: calculate a");
-        *re = false;
-        return 0;
-    }
-    double b = now.toDouble(&check);
-    if (!check)
-    {
-        ui->statusbar->showMessage("Error: calculate b");
-        *re = false;
-        return 0;
-    }
-
     switch (ch.unicode())
     {
     case '+':
         *re = true;
-        return a + b;
+        return n1 + n2;
 
     case '-':
         *re = true;
-        return a - b;
+        return n1 - n2;
 
     case '*':
         *re = true;
-        return a * b;
+        return n1 * n2;
 
     case '/':
-        if (b == 0)
+        if (n2 == 0)
         {
             ui->statusbar->showMessage("Error: 0 can't be devision");
             *re = false;
             return 0;
         }
         else
-            return a / b;
+            return n1 / n2;
     }
 }

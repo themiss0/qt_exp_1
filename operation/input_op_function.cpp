@@ -2,12 +2,17 @@
 #include "ui_mainwindow.h"
 #include <math.h>
 #include <iostream>
-
+// 数字键
 void MainWindow::on_num_clicked()
 {
 
-    if (now.toDouble() == 0 && !now.contains('.'))
+    if ((now.toDouble() == 0 && !now.contains('.')) || restart_input)
     {
+        if (restart_input)
+        {
+            on_b_c_clicked();
+            restart_input = false;
+        }
         QString temp = qobject_cast<QPushButton *>(sender())->text();
         if (temp == "0")
         {
@@ -24,9 +29,19 @@ void MainWindow::on_num_clicked()
     }
     refresh_display();
 }
-
+// 点号
 void MainWindow::on_b_point_clicked()
 {
+
+    if (restart_input)
+    {
+        on_b_c_clicked();
+        now = "0.";
+        restart_input = false;
+        refresh_display();
+        return;
+    }
+
     if (now.contains('.'))
     {
         return;
@@ -35,29 +50,4 @@ void MainWindow::on_b_point_clicked()
     now.append('.');
     refresh_display();
     return;
-}
-
-void MainWindow::on_b_p_or_n_clicked()
-{
-    bool check;
-    double num = now.toDouble(&check);
-    if (!check)
-    {
-        ui->statusbar->showMessage("Error on button p_or_n: " + now);
-        return;
-    }
-    if (num == 0 && !now.contains('.'))
-    {
-        return;
-    }
-
-    if (num < 0 || now.at(0) == '-')
-    {
-        now.removeFirst();
-    }
-    else
-    {
-        now = "-" + now;
-    }
-    refresh_display();
 }
