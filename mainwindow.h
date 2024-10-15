@@ -54,10 +54,18 @@ private:
     double calculate(QChar, bool *);
 
     Ui::MainWindow *ui;
+
+    // 记录第一个输入
     QString last = "";
+    // 记录操作符
     QChar operation = 'o';
+    // 记录当前输入
     QString now = "0";
+    // 状态栏显示
     QString statusMessage = "";
+    // 输出
     QString result = "";
+    // 是否已经输出结果
+    bool ifOutput = false;
 };
 #endif // MAINWINDOW_H

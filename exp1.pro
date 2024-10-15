@@ -9,7 +9,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp\
+    operation/binary_op_function.cpp\
+    operation/control_op_function.cpp\
+    operation/input_op_function.cpp\
+    operation/mainwindow_function.cpp\
+    operation/monocular_op_function.cpp\
 
 HEADERS += \
     mainwindow.h
