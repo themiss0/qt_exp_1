@@ -2,17 +2,26 @@
 #include "ui_mainwindow.h"
 #include <math.h>
 #include <iostream>
+
 // 数字键
 void MainWindow::on_num_clicked()
 {
 
-    if ((now.toDouble() == 0 && !now.contains('.')) || restart_input)
+    if (step == 1)
     {
-        if (restart_input)
-        {
-            on_b_c_clicked();
-            restart_input = false;
-        }
+        step = 2;
+        now = "0";
+        refresh_display();
+    }
+
+    if (step == 3)
+    {
+        step = 0;
+        clear();
+    }
+
+    if ((now.toDouble() == 0 && !now.contains('.')))
+    {
         QString temp = qobject_cast<QPushButton *>(sender())->text();
         if (temp == "0")
         {
@@ -33,11 +42,18 @@ void MainWindow::on_num_clicked()
 void MainWindow::on_b_point_clicked()
 {
 
-    if (restart_input)
+    if (step == 3)
     {
-        on_b_c_clicked();
+        step = 0;
         now = "0.";
-        restart_input = false;
+        refresh_display();
+        return;
+    }
+
+    if (step == 1)
+    {
+        step = 2;
+        now = "0.";
         refresh_display();
         return;
     }

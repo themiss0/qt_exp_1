@@ -3,20 +3,27 @@
 #include <math.h>
 #include <iostream>
 
-
 // 平方根
 void MainWindow::on_b_sqrt_clicked()
 {
-    bool check;
-    double num = now.toDouble(&check);
-    std::cout << num;
-    if (!check)
+    if (step == 1)
     {
-        ui->statusbar->showMessage("Error on button_sqrt");
+        step = 2;
+    }
+    if (step == 3)
+    {
+        step = 0;
+    }
+
+    if (now.toDouble() < 0)
+    {
+        statusMessage = "Error, invalid input";
+        clear(true);
         return;
     }
 
-    now.setNum(sqrt(num));
+    now.setNum(sqrt(now.toDouble()));
+
     refresh_display();
     return;
 }
@@ -24,48 +31,58 @@ void MainWindow::on_b_sqrt_clicked()
 void MainWindow::on_b_square_clicked()
 
 {
-    bool check;
-    double num = now.toDouble(&check);
-    std::cout << num;
-    if (!check)
+    if (step == 1)
     {
-        ui->statusbar->showMessage("Error on button_squard");
-        return;
+        step = 2;
+    }
+    if (step == 3)
+    {
+        step = 0;
     }
 
-    now.setNum(pow(num, 2));
+    now.setNum(pow(now.toDouble(), 2));
+
     refresh_display();
     return;
 }
 // 倒数
 void MainWindow::on_b_fraction_clicked()
 {
-
-    bool check;
-    double num = now.toDouble(&check);
-    std::cout << num;
-    if (!check)
+    if (step == 1)
     {
-        ui->statusbar->showMessage("Error on button_squard");
+        step = 2;
+    }
+    if (step == 3)
+    {
+        step = 0;
+    }
+
+    if (now.toDouble() == 0)
+    {
+        statusMessage = "Error, can't devide 0";
+        clear(true);
         return;
     }
 
-    now.setNum(1.0 / num);
+    now.setNum(1.0 / now.toDouble());
+
     refresh_display();
     return;
 }
 // 百分号
 void MainWindow::on_b_persent_clicked()
 {
-    bool check;
-    double num = now.toDouble(&check);
-    if (!check)
+    if (step == 1)
     {
-        ui->statusbar->showMessage("Error on button_persent");
-        return;
+        step = 2;
     }
 
-    now.setNum(num / 100);
+    if (step == 3)
+    {
+        step = 0;
+    }
+
+    now.setNum(now.toDouble() / 100);
     refresh_display();
     return;
 }
@@ -73,6 +90,16 @@ void MainWindow::on_b_persent_clicked()
 // 正负号
 void MainWindow::on_b_p_or_n_clicked()
 {
+    if (step == 1)
+    {
+        step = 2;
+    }
+
+    if (step == 3)
+    {
+        step = 0;
+    }
+
     double num = now.toDouble();
 
     if (num == 0 && !now.contains('.'))

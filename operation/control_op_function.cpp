@@ -6,8 +6,12 @@
 // 回退键
 void MainWindow::on_b_backspace_clicked()
 {
-    bool check;
-    double num = now.toDouble(&check);
+    double num = now.toDouble();
+
+    if (step == 3 || step == 1)
+    {
+        return;
+    }
 
     if (now.length() == 1)
     {
@@ -43,13 +47,15 @@ void MainWindow::on_b_backspace_clicked()
     return;
 }
 // CE
+
 void MainWindow::on_b_ce_clicked()
 {
-    if (restart_input)
+    if (step == 3)
     {
-        on_b_c_clicked();
+        clear();
         return;
     }
+
     now = "0";
     refresh_display();
     return;
@@ -57,29 +63,49 @@ void MainWindow::on_b_ce_clicked()
 // C
 void MainWindow::on_b_c_clicked()
 {
-    now = "0";
-    operation = "";
-    n = 0;
-    now = "0";
-    restart_input = false;
-    refresh_display();
-    return;
+    clear();
 }
 // 等号
 void MainWindow::on_b_equal_clicked()
 {
 
+    if (step == 0)
+    {
+        step = 3;
+        operation = "";
+        a = now.toDouble();
+        now.setNum(a);
+
+        refresh_display();
+        return;
+    }
+
+    if (step == 1)
+    {
+        step = 3;
+        a = now.toDouble();
+        b = now.toDouble();
+        now.setNum(calculate());
+        refresh_display();
+        return;
+    }
+
+    if (step == 2)
+    {
+        step = 3;
+        b = now.toDouble();
+        now.setNum(calculate());
+        refresh_display();
+        return;
+    }
+
     if (operation.isEmpty())
     {
+        refresh_display();
         return;
-    } 
-
-    bool check;
-    double result = calculate(operation[0], &check);
-
-    n = result;
-    now.setNum(result);
-    restart_input = true;
+    }
+    a = now.toDouble();
+    now.setNum(calculate());
 
     refresh_display();
     return;

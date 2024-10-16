@@ -6,38 +6,26 @@
 // 减
 void MainWindow::on_b_sub_clicked()
 {
+    QString op = "-";
+    operate(op[0]);
 }
 // 乘
 void MainWindow::on_b_multi_clicked()
 {
+
+    QString op = "*";
+    operate(op[0]);
 }
 // 除
 void MainWindow::on_b_devide_clicked()
 {
+
+    QString op = "/";
+    operate(op[0]);
 }
 // 加
 void MainWindow::on_b_add_clicked()
 {
-
-    bool check;
-    double num = now.toDouble();
-
-    if (!operation.isEmpty())
-    {
-        if (restart_input)
-        {
-
-            restart_input = false;
-            
-
-            operation = "+";
-            return;
-        }
-        n = calculate(operation[0], &check);
-    }
-
-    operation = "+";
-    now = "0";
-
-    refresh_display();
+    QString op = "+";
+    operate(op[0]);
 }

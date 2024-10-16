@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->b_7, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
     connect(ui->b_8, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
     connect(ui->b_9, SIGNAL(clicked()), this, SLOT(on_num_clicked()));
+
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 MainWindow::~MainWindow()
