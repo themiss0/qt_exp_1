@@ -56,7 +56,6 @@ void MainWindow::clear(bool iferror)
 
 void MainWindow::operate(QChar op)
 {
-    double num = now.toDouble();
 
     if (step == 1)
     {
