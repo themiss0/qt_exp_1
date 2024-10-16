@@ -1,5 +1,7 @@
 QPushButton {
-    margin-bottom: 1px;
+
+    border: 1px solid #e5e5e5;
+    border-bottom: 2px solid #e5e5e5;
     border-radius: 4%;
 }
 
@@ -12,6 +14,8 @@ QPushButton[type='num']:hover {
 }
 
 QPushButton[type='num']:pressed {
+
+    border: 1px solid #e5e5e5;
     color: #5f5f5f;
     background-color: #f9f9f9;
 }
@@ -26,6 +30,7 @@ QPushButton[type='operate']:hover {
 }
 
 QPushButton[type='operate']:pressed {
+    border: 1px solid #e5e5e5;
     color: #5d5d5d;
     background-color: #f4f4f4;
 }
@@ -41,6 +46,7 @@ QPushButton[type='equal']:hover {
 }
 
 QPushButton[type='equal']:pressed {
+    border: 1px solid #e5e5e5;
     color: #bebdbd;
     background-color: #5c5b59;
 }
@@ -50,4 +56,10 @@ QLineEdit {
     background-color: rgba(0, 0, 0, 0);
 }
 
-QTitle
+QWidget {
+    background-color: #f3f3f3;
+}
+
+QMainWindow::titleBar {
+    background-color: red;
+}

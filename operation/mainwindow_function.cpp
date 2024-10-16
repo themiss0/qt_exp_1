@@ -8,7 +8,14 @@ void MainWindow::refresh_display(bool iferror)
 {
     if (!iferror)
     {
-        statusMessage = "a:" + QString::number(a) + ", operation:" + operation + ", b: " + QString::number(b) + ", step:" + QString::number(step);
+        if (step != 3)
+        {
+            statusMessage = operation;
+        }
+        else
+        {
+            statusMessage = "=";
+        }
     }
     ui->statusbar->showMessage(statusMessage);
     ui->display->setText(now);
