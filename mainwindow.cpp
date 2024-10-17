@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     setFocusPolicy(Qt::StrongFocus);
+    setWindowIcon(QIcon("://calculate.ico"));
 
     QFile file(":/styleFile/qss/QPushButton.qss"); // 创建QFile对象的实例
     if (file.open(QFile::ReadOnly | QFile::Text))
